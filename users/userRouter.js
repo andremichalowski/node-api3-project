@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+
+//CREATE-----------------------------------------//
 router.post('/', (req, res) => {
   // do your magic!
 });
@@ -10,6 +12,8 @@ router.post('/:id/posts', (req, res) => {
   // do your magic!
 });
 
+
+//READ-----------------------------------------//
 router.get('/', (req, res) => {
   // do your magic!
 });
@@ -22,13 +26,20 @@ router.get('/:id/posts', (req, res) => {
   // do your magic!
 });
 
+
+//UPDATE-----------------------------------------//
+router.put('/:id', (req, res) => {
+  // do your magic!
+});
+
+
+//DELETE-----------------------------------------//
 router.delete('/:id', (req, res) => {
   // do your magic!
 });
 
-router.put('/:id', (req, res) => {
-  // do your magic!
-});
+
+
 
 //custom middleware
 
