@@ -7,13 +7,29 @@ const userActions = require('./userDb')
 
 
 //CREATE-----------------------------------------//
-router.post('/', (req, res) => {
-  // do your magic!
-
+router.post('/', validateUser, logger, (req, res) => {
+  const newUser = res.body;
+  userActions.insert(newUser) //<<< Key info here
+    .then(bool => {
+      console.log(bool)
+      res.status(201).json({message: "new user created"})
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({message: "The server encountered an error processing this request"})
+    })
 });
 
-router.post('/:id/posts', (req, res) => {
-  // do your magic!
+router.post('/:id/posts', validatePost, logger, (req, res) => {
+  const newPost = req.body;
+  userActions.insertPost(newPost) //<<< Key info here
+    .then(post => {
+      res.status(201).json({message: "new post created"})
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json(message: "The server encountered an error when processing this request")
+    })
 });
 
 
