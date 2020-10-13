@@ -34,7 +34,7 @@ router.post('/:id/posts', validatePost, logger, (req, res) => {
 
 
 //READ-----------------------------------------//
-router.get('/', (req, res) => {
+router.get('/',logger, (req, res) => {
   // do your magic!
   userActions.get()
     .then(users => {
@@ -46,7 +46,7 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', validateUserId, logger, (req, res) => {
   // do your magic!
   const id = req.params.id;
   userActions.getById(id)
@@ -60,7 +60,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.get('/:id/posts', (req, res) => {
+router.get('/:id/posts', validateUserId, logger, (req, res) => {
   // do your magic!
   const id = req.params.id;
   userActions.getByUserPosts(id)
@@ -76,7 +76,7 @@ router.get('/:id/posts', (req, res) => {
 
 
 //UPDATE-----------------------------------------//
-router.put('/:id', (req, res) => {
+router.put('/:id', validateUserId, logger, (req, res) => {
   // do your magic!
   const id = req.params.id;
   const body = req.body;
@@ -93,7 +93,7 @@ router.put('/:id', (req, res) => {
 
 
 //DELETE-----------------------------------------//
-router.delete('/:id', (req, res) => {
+router.delete('/:id',validateUserId, logger, (req, res) => {
   // do your magic!
   const id = req.params.id;
   userActions.remove(id)
