@@ -63,6 +63,14 @@ router.put('/:id', (req, res) => {
 //DELETE-----------------------------------------//
 router.delete('/:id', (req, res) => {
   // do your magic!
+  const id = req.params.id;
+  postActions.remove(id)
+    .then(deletedPost => {
+      res.status(200).json({message: `Post ${id} was deleted`})
+    })
+    .catch(error => {
+      res.status(500).json({message: "Your request could not be completed"})
+    })
 });
 
 
