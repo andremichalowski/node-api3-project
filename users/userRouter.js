@@ -78,6 +78,17 @@ router.get('/:id/posts', (req, res) => {
 //UPDATE-----------------------------------------//
 router.put('/:id', (req, res) => {
   // do your magic!
+  const id = req.params.id;
+  const body = req.body;
+  userActions.update(id, body)
+    .then(bool => {
+      console.log("PUT request", bool)
+      res.status(200).json({ message: "Your request was accepted"})
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({ message: "The server encountered an error processing this request" })
+    })
 });
 
 
