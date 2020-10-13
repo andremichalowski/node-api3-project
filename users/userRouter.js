@@ -95,6 +95,20 @@ router.put('/:id', (req, res) => {
 //DELETE-----------------------------------------//
 router.delete('/:id', (req, res) => {
   // do your magic!
+  const id = req.params.id;
+  userActions.remove(id)
+    .then(bool => {
+      console.log('accepted / rejected bool:' bool);
+      if (bool > 0) {
+        res.status(202).json({ message: `User with id: ${id} was removed` })
+      } else {
+          res.status(404).json({ message: `No user with the id: ${id} was found` })
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({ message: "The server encountered an error processing this request" })
+    })
 });
 
 
