@@ -28,7 +28,7 @@ router.post('/:id/posts', validatePost, logger, (req, res) => {
     })
     .catch(error => {
       console.log(error)
-      res.status(500).json(message: "The server encountered an error when processing this request")
+      res.status(500).json({ message: "The server encountered an error when processing this request" })
     })
 });
 
@@ -36,14 +36,42 @@ router.post('/:id/posts', validatePost, logger, (req, res) => {
 //READ-----------------------------------------//
 router.get('/', (req, res) => {
   // do your magic!
+  userActions.get()
+    .then(users => {
+      res.status(200).json(users)
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({ errorMessage: "The server encountered an error processing this request" })
+    })
 });
 
 router.get('/:id', (req, res) => {
   // do your magic!
+  const id = req.params.id;
+  userActions.getById(id)
+    .then(user => {
+      console.log(user)
+      res.status(200).json(user)
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({ errorMessage: "The server encountered an error processing this request" })
+    })
 });
 
 router.get('/:id/posts', (req, res) => {
   // do your magic!
+  const id = req.params.id;
+  userActions.getByUserPosts(id)
+    .then(posts => {
+      console.log(posts)
+      res.status(200).json(posts)
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({ errorMessage: "The server encountered an error processing this request" })
+    })
 });
 
 
