@@ -36,13 +36,27 @@ router.get('/:id', (req, res) => {
 //UPDATE-----------------------------------------//
 router.put('/:id', (req, res) => {
   // do your magic!
-  .then(user => {
-    res.status(200).json({message: `The post with id: ${id} was deleted`})
-  })
-  .catch(error => {
-    console.log(error)
-    res.status(500).json({message: "Your request could not be completed"})
-  })
+  const id = req.params.id;
+  const changes = req.body;
+  postActtions.update(id, changes)
+    .then(bool => {
+      if(bool > 0) {
+        postActions.getById(id)
+          .then(post => {
+            res.status(200).json(post)
+          })
+          .catch(error => {
+            console.log(error)
+            res.status(500).json({message: "Your request could not be completed"})
+          })
+      } else { 
+        res.status(404).json({message: "Your request could not be completed"})
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({message: "Your request could not be completed"})
+    })
 });
 
 
