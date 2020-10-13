@@ -8,11 +8,11 @@ In this challenge, you build an API and write custom middleware that satisfies t
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git push -u origin `<firstName-lastName>`.
+- [x] Create a forked copy of this project.
+- [x] Clone your OWN version of the repository (Not Lambda's by mistake!).
+- [x] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [x] Push commits: git push -u origin `<firstName-lastName>`.
 
 ### Task 2: Minimum Viable Product
 
@@ -29,7 +29,8 @@ Follow these steps to set up and work on your project:
 
 - `validateUserId()`
 
-  - this middleware will be used for all endpoints that include an `id` parameter in the url (ex: `/api/users/:id` and it should check the database to make sure there is a user with that id. If there is no user with that id return HTTP status code 404 and a useful error message. If a user with that id is found, then let the request continue.
+  - this middleware will be used for all endpoints that include an `id` parameter in the url (ex: `/api/users/:id` and it should check the database to make sure there is a user with that id. 
+  - If there is no user with that id return HTTP status code 404 and a useful error message. If a user with that id is found, then let the request continue.
   - if the `id` parameter is valid, store that user object as `req.user`
   - if the `id` parameter does not match any user id in the database, cancel the request and respond with status `400` and `{ message: "invalid user id" }`
 
